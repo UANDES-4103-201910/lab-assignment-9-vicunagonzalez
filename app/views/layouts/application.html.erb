@@ -9,23 +9,8 @@
   </head>
 
   <body>
-  	<p id="notice"><%= notice %></p>
-    <div class="nav-bar row" style="align-content: end">
-      <div class="nav-bar-right" style="align-content: end">
-        <% if user_signed_in? %>
-          <p>
-            <% current_user %>
-          </p>
-          <button onclick="window.location.href='/log_out'"> Log Out</button>
-        <% else %>
-          <button onclick="window.location.href='/login'"> Log in</button>
-          <button onclick="window.location.href='/sign_in'"> Sign in</button>
-        <% end %>
-      </div>
-    </div>
-    <hr>
-    <%= yield %>
-<script>
+
+    <script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '418703665575915',
@@ -45,6 +30,25 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>
+      </script>
+      <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+  	<p id="notice"><%= notice %></p>
+    <div class="nav-bar row" style="align-content: end">
+      <div class="nav-bar-right" style="align-content: end">
+        <% if user_signed_in? %>
+          <p>
+            <% current_user %>
+          </p>
+          <button onclick="window.location.href='/log_out'"> Log Out</button>
+        <% else %>
+            <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.3&appId=418703665575915&autoLogAppEvents=1"></script>
+          <button onclick="window.location.href='/login'"> Log in</button>
+          <button onclick="window.location.href='/sign_in'"> Sign in</button>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <%= yield %>
   </body>
 </html>
