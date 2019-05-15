@@ -10,16 +10,16 @@
 
   <body>
   	<p id="notice"><%= notice %></p>
-    <div class="nav-bar row">
+    <div class="nav-bar row" style="align-content: end">
       <div class="nav-bar-right" style="align-content: end">
         <% if user_signed_in? %>
           <p>
             <% current_user %>
           </p>
-          <button> Log Out</button>
+          <button onclick="window.location.href='/log_out'"> Log Out</button>
         <% else %>
-          <button> Log in</button>
-          <button> Sign in</button>
+          <button onclick="window.location.href='/login'"> Log in</button>
+          <button onclick="window.location.href='/sign_in'"> Sign in</button>
         <% end %>
       </div>
     </div>
