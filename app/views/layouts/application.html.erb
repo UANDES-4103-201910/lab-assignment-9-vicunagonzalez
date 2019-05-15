@@ -10,6 +10,16 @@
 
   <body>
   	<p id="notice"><%= notice %></p>
+    <div class="nav-bar row">
+      <div class="nav-bar-right">
+        <% if user_signed_in? %>
+          <button> Log Out</button>
+        <% else %>
+          <button> Log in</button>
+          <button> Sign in</button>
+        <% end %>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>
