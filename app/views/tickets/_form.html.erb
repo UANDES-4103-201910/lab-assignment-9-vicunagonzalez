@@ -1,0 +1,33 @@
+<%= form_with(model: ticket, local: true) do |form| %>
+  <% if ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+        <% ticket.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :description, "Description:"%>
+    <%= form.text_field :description %>
+  </div>
+  <div class="form-group">
+    <%= form.label :price, "Price:" %>
+    <%= form.number_field :price %>
+  </div>
+  <div class="form-group">
+    <%= form.label :event_id, "Event: " %>
+    <% @events=Event.all %>
+    <% @events.each do |event| %>
+      <%= form.label(:event_name, event.name) %>
+      <%= form.radio_button(:event_id, event.id) %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
