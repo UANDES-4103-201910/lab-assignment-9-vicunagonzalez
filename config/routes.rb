@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'events', to: 'events#index'
+  get 'events/new',to: 'events#new'
+  post 'events', to: 'events#create'
   get 'tickets', to: 'tickets#index'
   get 'tickets/new', to: 'tickets#new'
   post 'tickets', to: 'tickets#create'
