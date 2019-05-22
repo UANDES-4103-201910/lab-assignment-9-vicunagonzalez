@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '00ed342c4f9732f9a6ada812a6956ce44ec66e8bdec95fe71fa8b814f5c4bf78949797d08a0989b75977429178dac60ee5e95be2a2aa9adb7286b4c52070b69a'
+  # config.secret_key = '78c3bfa3ebf668f8539de24c08d601525ae799f7a391abe9e91c721106467fced4972870b2c76ff79b6715b4daf42c9bbc69b0ca47965106b96401b1f480eb8e'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -18,7 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'mailer@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -88,7 +88,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [:database]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -114,7 +114,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '9b9090a6df927f204744ee9dedb87ee75cc9b67356258e1bc31b1694d1540d22a545fc865cd3f0fde5582971d59ef9f5a73f6103535563c813483d0995a13ee7'
+  # config.pepper = '3b0cfee75b5bfd3a3334eb8e9d2be43b24bf4ca9015f0a26066136836b0fd0ff1b91cc4e29310d3774079630140a0375b987648768b8e6c037450da921e7a26e'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -296,6 +296,8 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.mailer_sender = 'mailer@example.com'
-  config.omniauth :facebook, "418703665575915", "450d06e1f828e93ae67ead09b68ba2be"
+
+  config.omniauth :google_oauth2, '146984985012-j84rmrnmee7pu1e70naenlo727bp309e.apps.googleusercontent.com', 'weiHwEAalPDIGZdJPPg4b24j', {}
+
+  
 end
