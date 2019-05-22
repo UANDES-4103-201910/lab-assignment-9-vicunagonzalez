@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'tickets', to: 'tickets#index'
   get 'tickets/new', to: 'tickets#new'
-  post 'tickets/create', to: 'tickets#create'
+  post 'tickets', to: 'tickets#create'
 
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
