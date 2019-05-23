@@ -34,6 +34,9 @@
       <% end %><br/>
       <%= form.password_field :password, autocomplete: "off" %>
   </div>
+  <div>
+    <%= form.hidden_field :role, "user" %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
