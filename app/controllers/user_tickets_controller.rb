@@ -27,6 +27,14 @@ class UserTicketsController < ApplicationController
   end
 
   def pay
+    respond_to do |format|
+      if @user_ticket.update(user_ticket_params)
+        format.html { redirect_to shopping, notice: 'Tickets successfully purchased.' }
+      else
+        format.html { render shopping }
+        format.json { render json: @user_ticket.errors, status: :unprocessable_entity }
+      end
+    end
   end
   def user_ticket_params
     params.require(:user_ticket).permit(:user_id, :ticket_id, :time, :paid)

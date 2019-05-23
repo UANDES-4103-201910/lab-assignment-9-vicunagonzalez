@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'user_tickets', to: 'user_tickets#index'
   post 'user_tickets', to: 'user_tickets#create'
   get 'user_tickets/new', to: 'user_tickets#new'
-  post 'shopping_cart', to: 'user_tickets#pay'
+  update 'shopping_cart', to: 'user_tickets#pay'
   get 'shopping_cart', to: 'user_tickets#shopping'
   get 'events', to: 'events#index'
   get 'events/new',to: 'events#new'
