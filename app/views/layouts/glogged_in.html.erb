@@ -10,9 +10,15 @@
 
   <body>
     <nav class="navbar">
-      
-        <button><%= User.find(session["warden.user.user.key"][0][0]).name %></button>
+      <% begin %>
+        <% user = User.find(session["warden.user.user.key"][0][0]) %>
+      <% rescue %>
+        <button><%= link_to "Log in", "/users/sign_in"%></button>
+      <% else %>
+        <button><%= user.name %></button>
         <button><%= link_to "Log Out", log_out_path, method: :delete %></button>
+      <% end %>
+   
       
     </nav>
   	<p id="notice"><%= notice %></p>

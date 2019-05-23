@@ -10,7 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :address
 
       t.string :provider
-
+      t.string :role
       t.timestamps
     end
   end
