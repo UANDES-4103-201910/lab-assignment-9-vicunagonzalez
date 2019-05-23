@@ -1,0 +1,30 @@
+<h1>Your tickets</h1>
+<table>
+  <thead>
+  <tr>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @user_tickets.each do |user_ticket| %>
+    <% place = Place.find_by(id: user_ticket.place) %>
+    <tr>
+      <td><%= user_ticket.ticket.description %></td>
+      <td><%= user_ticket.description %></td>
+      <td><%= user_ticket.start_date %></td>
+      <td><%= user_ticket.place.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<% begin %>
+  <% user = User.find(session["warden.user.user.key"][0][0]) %>
+<% rescue %>
+<% else %>
+  <% if user.role == 'admin' then %>
+    <%= link_to 'New Event', events_new_path %>
+  <% end %>
+<% end %>
