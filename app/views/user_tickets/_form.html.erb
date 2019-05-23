@@ -18,7 +18,7 @@
       <%= form.radio_button(:ticket_id, ticket.id) %>
     <% end %>
   </div>
-  <% user = current_user %>
+  <% user = User.find(session["warden.user.user.key"][0][0]) %>
   <%= form.hidden_field :user_id, value: user.id %>
   <%= form.hidden_field :time, value: DateTime.now %>
   <%= form.hidden_field :paid, value: false %>

@@ -1,3 +1,15 @@
-<h1>Add a ticket to Shopping cart</h1>
 
-<%=  render 'form', user_ticket: @user_ticket %>
+<% begin %>
+  <% user = User.find(session["warden.user.user.key"][0][0]) %>
+<% rescue %>
+
+<% else %>
+  <h1>Add a ticket to Shopping cart</h1>
+
+  <%=  render 'form', user_ticket: @user_ticket %>
+  <% if user.role == 'admin'%>
+
+  <%else %>
+
+  <% end %>
+<% end %>

@@ -1,47 +1,36 @@
-<h1>Your shopping cart</h1>
-<table>
-  <thead>
-  <tr>
-    <th colspan="4"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @user_tickets.each do |user_ticket| %>
+<% begin %>
+  <% user = User.find(session["warden.user.user.key"][0][0]) %>
+<% rescue %>
+  <p>You need to log in to have a shopping cart.</p>
+<% else %>
+  <h1>Your shopping cart</h1>
+  <table>
+    <thead>
     <tr>
-      <td><%= user_ticket.ticket.description %></td>
-      <td><%= user_ticket.ticket.price %></td>
-      <td><%= user_ticket.ticket.event.name %></td>
+      <th colspan="4"></th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= form_with(model: user_ticket, local: true) do |form| %>
-  <% if user_ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user_ticket.errors.count, "error") %> Prohibited this ticket from being added to shopping cart:</h2>
+    </thead>
 
-      <ul>
-        <% user_ticket.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <tbody>
+    <% if @user_tickets == nil %>
+      <%= current_user.uid %>
+      <p>You don't have anything in your shopping cart</p>
+    <% else %>
+    <%= current_user %>
+      <% @user_tickets.each do |user_ticket| %>
+        <tr>
+          <td><%= user_ticket.ticket.description %></td>
+          <td><%= user_ticket.ticket.price %></td>
+          <td><%= user_ticket.ticket.event.name %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+    <div>
+      <%= button_to 'Pay', '/shopping_cart', method: :post %>
     </div>
-  <% end %>
-  <div class="form-group">
-    <%= form.label :ticket_id, "Ticket:" %>
-    <% tickets=Ticket.all %>
-    <% tickets.each do |ticket| %>
-      <%= form.label(:ticket_info, ticket.event.name)%>
-      <%= form.radio_button(:ticket_id, ticket.id) %>
+    <% if user.role == 'admin'%>
     <% end %>
-  </div>
-  <% user = current_user %>
-  <%= form.hidden_field :user_id, value: user.id %>
-  <%= form.hidden_field :time, value: DateTime.now %>
-  <%= form.hidden_field :paid, value: false %>
-  <div class="actions">
-    <%= form.submit "Pay tickets"%>
-  </div>
+  <%end %>
 <% end %>
-<br>
